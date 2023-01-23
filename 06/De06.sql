@@ -1,0 +1,93 @@
+--Cau1
+DROP DATABASE De06
+CREATE DATABASE De06
+USE De06
+GO
+CREATE TABLE DaoDien(
+	MaDD NVARCHAR(30) PRIMARY KEY,
+	TenDD NVARCHAR(50) NOT NULL,
+	Email NVARCHAR(50),
+	Tel NVARCHAR(20),
+	GhiChu NVARCHAR(30),
+)
+CREATE TABLE Phim(
+	MaPhim NVARCHAR(50) PRIMARY KEY,
+	TenPhim NVARCHAR(150) NOT NULL,
+	KinhPhi NUMERIC(18,0),
+	NoiDung NVARCHAR(150),
+	NgayBamMay DATETIME,
+	NgayKetThuc DATETIME,
+	MaDD NVARCHAR(30) REFERENCES DaoDien(MaDD),
+)
+CREATE TABLE DienVien(
+	MaDV NVARCHAR(30) PRIMARY KEY,
+	TenDV NVARCHAR(50) NOT NULL,
+	Email NVARCHAR(50),
+	Tel NVARCHAR(20),
+	TongThuLao NUMERIC(18,0),
+	GhiChu NVARCHAR(150),
+)
+
+CREATE TABLE DienPhim(
+	ID INT PRIMARY KEY,
+	NgayDien DATETIME,
+	NgayKetThuc DATETIME,
+	MaDV NVARCHAR(30) REFERENCES DienVien(MaDV),
+	MaPhim NVARCHAR(50) REFERENCES Phim(MaPhim),
+	ThuLao NUMERIC(18,0),
+	GhiChu NVARCHAR(150),
+)
+--Cau2
+GO
+CREATE VIEW vwPhimDD
+AS
+SELECT Phim.MaPhim, Phim.TenPhim,Phim.KinhPhi,DaoDien.TenDD
+FROM Phim 
+INNER JOIN DaoDien ON Phim.MaDD = DaoDien.MaDD WHERE YEAR(Phim.NgayBamMay)= 2019 
+DROP VIEW vwPhimDD
+SELECT * FROM vwPhimDD
+ --Cau3
+ ALTER TABLE Phim ADD TongTienChiDienVien INT NOT NULL DEFAULT 0;
+ SELECT * FROM Phim
+
+DROP TRIGGER tgThemDienPhim
+ GO
+ CREATE TRIGGER tgThemDienPhim 
+ ON DienPhim
+ FOR INSERT
+ AS BEGIN
+	DECLARE @maPhim NVARCHAR(50);
+	DECLARE @thuLaoMoi NUMERIC(18,0);
+	SET @maPhim = (SELECT MaPhim FROM INSERTED);
+	SET @thuLaoMoi = (SELECT ThuLao FROM INSERTED );
+	UPDATE Phim SET TongTienChiDienVien = TongTienChiDienVien + @thuLaoMoi WHERE MaPhim = @maPhim
+END
+
+GO 
+CREATE TRIGGER tgXoaDienPhim
+ON DienPhim
+FOR DELETE
+AS BEGIN
+	DECLARE @maPhim NVARCHAR(50);
+	DECLARE @thuLaoCu NUMERIC(18,0);
+	SET @maPhim = (SELECT MaPhim FROM DELETED);;
+	SET @thuLaoCu = (SELECT ThuLao FROM DELETED );
+	UPDATE Phim SET TongTienChiDienVien = TongTienChiDienVien - @thuLaoCu WHERE MaPhim = @maPhim
+END
+
+GO
+CREATE TRIGGER tgSuaDienPhim
+ON DienPhim
+FOR DELETE
+AS BEGIN
+	DECLARE @maPhimMoi NVARCHAR(50);
+	DECLARE @maPhimCu NVARCHAR(50);
+	DECLARE @thuLaoCu NUMERIC(18,0);
+	DECLARE @thuLaoMoi NUMERIC(18,0);
+	SET @maPhimCu = (SELECT MaPhim FROM DELETED);
+	SET @maPhimMoi = (SELECT MaPhim FROM INSERTED);
+	SET @thuLaoCu = (SELECT ThuLao FROM DELETED );
+	SET @thuLaoMoi = (SELECT ThuLao FROM INSERTED );
+	UPDATE Phim SET TongTienChiDienVien = TongTienChiDienVien - @thuLaoCu WHERE MaPhim = @maPhimCu
+	UPDATE Phim SET TongTienChiDienVien = TongTienChiDienVien + @thuLaoMoi WHERE MaPhim = @maPhimMoi
+END

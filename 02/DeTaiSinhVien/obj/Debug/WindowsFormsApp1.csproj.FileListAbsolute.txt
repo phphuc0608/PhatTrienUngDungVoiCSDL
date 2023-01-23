@@ -1,0 +1,12 @@
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\bin\Debug\WindowsFormsApp1.exe.config
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\bin\Debug\WindowsFormsApp1.exe
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\bin\Debug\WindowsFormsApp1.pdb
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.Form1.resources
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.exe
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.pdb
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\02\DeTaiSinhVien\obj\Debug\WindowsFormsApp1.Cau5.resources

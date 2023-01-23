@@ -1,0 +1,21 @@
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\bin\Debug\Cau4.exe.config
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\bin\Debug\Cau4.exe
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\bin\Debug\Cau4.pdb
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\obj\Debug\Cau4.csproj.AssemblyReference.cache
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\obj\Debug\Cau4.Form1.resources
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\obj\Debug\Cau4.Properties.Resources.resources
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\obj\Debug\Cau4.csproj.GenerateResource.cache
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\obj\Debug\Cau4.csproj.CoreCompileInputs.cache
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\obj\Debug\Cau4.exe
+J:\2022-2023\Semester 1\Phát triển ứng dụng với CSDL\OnTap\Cau4\obj\Debug\Cau4.pdb
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\bin\Debug\Cau4.exe.config
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\bin\Debug\Cau4.exe
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\bin\Debug\Cau4.pdb
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.csproj.AssemblyReference.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.csproj.SuggestedBindingRedirects.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.Form1.resources
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.Properties.Resources.resources
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.csproj.GenerateResource.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.csproj.CoreCompileInputs.cache
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.exe
+D:\University\ky1nam3\PTUDvoiCSDL\DeCuong\04\Cau4\obj\Debug\Cau4.pdb

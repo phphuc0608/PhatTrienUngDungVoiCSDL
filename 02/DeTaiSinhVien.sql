@@ -1,0 +1,130 @@
+﻿--Cau1
+CREATE DATABASE De02
+USE De02
+GO
+--DROP DATABASE DeTaiSinhVien
+CREATE TABLE SinhVien(
+MaSV NVARCHAR(20) PRIMARY KEY,
+TenSV NVARCHAR(50),
+NS DATETIME,
+MaLop NVARCHAR(20),
+NamVaoTruong INT,
+)
+
+CREATE TABLE GiaoVien(
+MaGV INT PRIMARY KEY,
+TenGV NVARCHAR(1000),
+DC NVARCHAR(150),
+NgayVaoCQ DATETIME,
+--SoDT INT,
+)
+
+CREATE TABLE DeTai(
+MaDT INT PRIMARY KEY,
+TenDT NVARCHAR(1000),
+NgayBD DATETIME,
+NgayKT DATETIME,
+HoTT NVARCHAR(150),
+MaGV INT REFERENCES GiaoVien(MaGV),
+)
+
+CREATE TABLE SV_DT(
+ID INT PRIMARY KEY,
+MaSV NVARCHAR(20) REFERENCES SinhVien(MaSV),
+MaDT INT REFERENCES DeTai(MaDT),
+KQ NVARCHAR(10),
+GhiChu NVARCHAR(50),
+)
+--Cau2
+GO
+CREATE VIEW vwDeTai
+AS
+SELECT DeTai.TenDT, DeTai.MaDT, DeTai.NgayBD, DeTai.NgayKT, GiaoVien.DC
+FROM  GiaoVien INNER JOIN DeTai ON GiaoVien.MaGV = DeTai.MaGV
+WHERE GiaoVien.DC = 'Khoa CNTT'
+GO
+SELECT * FROM vwDeTai
+DROP VIEW vwDeTai
+--Cau3
+ALTER TABLE GiaoVien ADD SoDT INT NOT NULL DEFAULT 0;
+SELECT * FROM DeTai
+GO
+CREATE TRIGGER tgThemDeTai
+ON DeTai
+FOR INSERT
+AS BEGIN
+	DECLARE @maGV INT;
+	SET @maGV = (SELECT MaGV FROM INSERTED);
+	UPDATE GiaoVien SET SoDT = SoDT + 1 WHERE MaGV = @maGV;
+END
+DROP TRIGGER tgThemDeTai
+GO
+CREATE TRIGGER tgXoaDeTai
+ON DeTai
+FOR DELETE
+AS BEGIN
+	DECLARE @maGV INT;
+	SET @maGV = (SELECT MaGV FROM DELETED);
+	UPDATE GiaoVien SET SoDT = SoDT - 1 WHERE MaGV = @maGV;
+END
+
+GO 
+CREATE TRIGGER tgSuaDeTai
+ON DeTai
+FOR UPDATE
+AS BEGIN
+	DECLARE @maGVMoi INT;
+	DECLARE @maGVCu INT;
+	SET @maGVCu = (SELECT MaGV FROM DELETED);
+	SET @maGVMoi = (SELECT MaGV FROM INSERTED);
+	UPDATE GiaoVien SET SoDT = SoDT - 1 WHERE MaGV = @maGVCu;
+	UPDATE GiaoVien SET SoDT = SoDT + 1 WHERE MaGV = @maGVMoi;
+END
+
+SELECT * FROM GiaoVien
+
+GO
+CREATE PROCEDURE spThemDeTai @maDT INT, @tenDT NVARCHAR(1000), @ngayBD DATETIME, @ngayKT DATETIME,@hoTT NVARCHAR(150),@maGV INT
+AS BEGIN
+	DECLARE @dem INT;
+	SET @dem = (SELECT COUNT(*) FROM DeTai WHERE MaDT = @maDT)
+	IF @dem > 0
+		THROW 50000,N'Trùng mã đề tài',1;
+	ELSE
+		SET @dem = (SELECT COUNT(*) FROM GiaoVien WHERE MaGV = @maGV)
+		IF @dem <= 0
+			THROW 50001,N'Giáo viên này không có trong cơ sở dữ liệu',1;
+		ELSE
+			INSERT DeTai VALUES (@maDT,@tenDT,@ngayBD,@ngayKT,@hoTT,@maGV)
+END
+
+DROP PROCEDURE [spSuaDeTai]
+GO
+CREATE PROCEDURE spSuaDeTai @maDT INT, @tenDT NVARCHAR(1000), @ngayBD DATETIME, @ngayKT DATETIME,@hoTT NVARCHAR(150),@maGV INT
+AS BEGIN
+	DECLARE @dem INT;
+	SET @dem = (SELECT COUNT(*) FROM GiaoVien WHERE MaGV = @maGV)
+	IF @dem > 0
+		THROW 50000,N'Giáo viên này không tồn tại trong cơ sở dữ liệu',1;
+	ELSE
+		UPDATE DeTai SET TenDT = @tenDT, NgayBD = @ngayBD, NgayKT = @ngayKT, HoTT = @hoTT, MaGV = @maGV WHERE MaDT = @maDT
+END
+
+GO
+CREATE VIEW vwDeTaiGiaoVien
+AS
+SELECT DeTai.MaDT, DeTai.TenDT, DeTai.NgayBD, DeTai.HoTT, DeTai.NgayKT, GiaoVien.TenGV, DeTai.MaGV
+FROM   DeTai 
+INNER JOIN GiaoVien ON DeTai.MaGV = GiaoVien.MaGV
+SELECT * FROM vwDeTaiGiaoVien
+
+GO
+CREATE FUNCTION ufTimKiemDeTai ( @tenDT NVARCHAR(1000), 
+@tenGV NVARCHAR(1000))
+RETURNS TABLE
+AS
+	RETURN (SELECT * FROM vwDeTaiGiaoVien WHERE 
+								(@tenDT = '' OR TenDT LIKE '%'+@tenDT+'%')
+								AND (@tenGV = '' OR TenGV LIKE '%'+@tenGV+'%')							
+)
+DROP FUNCTION ufTimKiemDeTai

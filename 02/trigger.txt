@@ -1,0 +1,36 @@
+--Cau 2
+create view TimKiemHocVien
+as select MaHV,TenHV,NgaySinh,Tel from HocVien inner join LopHoc on LopHoc.MaLop = HocVien.MaLop where MaGV='GV01'
+
+--Cau 3
+alter table LopHoc add SoHocVien int not null default 0
+
+create trigger ThemHocVien
+on HocVien
+for insert
+as begin      
+	declare @maLop nvarchar(30);
+	set @maLop = (select MaLop from inserted);
+	update LopHoc set SoHocVien = SoHocVien + 1 where MaLop = @maLop;
+end
+
+create trigger XoaHocVien
+on HocVien
+for delete
+as begin
+	declare @maLop nvarchar(30);
+	set @maLop = (select MaLop from deleted);
+	update LopHoc set SoHocVien = SoHocVien - 1 where MaLop = @maLop;
+end
+
+create trigger SSuaHocVien
+on HocVien
+for update 
+as begin
+	declare @maLopCu nvarchar(30);
+	declare @maLopMoi nvarchar(30);
+	set @maLopCu = (select MaLop from deleted);
+	set @maLopMoi = (select MaLop from inseted);
+	update LopHoc set SoHocVien = SoHocVien - 1 where MaLop = @maLopCu;
+	update LopHoc set SoHocVien = SoHocVien + 1 where MaLop = @maLopMoi;
+end

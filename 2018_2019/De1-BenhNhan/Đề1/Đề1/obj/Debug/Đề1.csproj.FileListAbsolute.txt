@@ -1,0 +1,9 @@
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\bin\Debug\Đề1.exe.config
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\bin\Debug\Đề1.exe
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\bin\Debug\Đề1.pdb
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\obj\Debug\Đề1.Form1.resources
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\obj\Debug\Đề1.Properties.Resources.resources
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\obj\Debug\Đề1.csproj.GenerateResource.Cache
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\obj\Debug\Đề1.exe
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\obj\Debug\Đề1.pdb
+C:\Users\FPT\Desktop\Đề\SQL\De1-BenhNhan\Đề1\Đề1\obj\Debug\Đề1.csprojResolveAssemblyReference.cache
